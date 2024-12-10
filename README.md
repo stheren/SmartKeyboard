@@ -23,6 +23,21 @@
 
 ![](https://img.shields.io/badge/com.github.johnrengelman.shadow-5.2.0-black)
 
+### How to start
+You can download the latest version of SmartFish [here](https://github.com/stheren/SmartFish/releases/latest)
+
+```shell
+java -jar SmartFish-X.X.X.jar
+```
+
+#### Option
+```shell
+java -jar SmartFish-X.X.X.jar --alwaysOnTop
+
+java -jar SmartFish-X.X.X.jar --dont-stay-awake
+```
+
+
 ### What is SmartFish?
 
 SmartFish is a simple, yet powerful, fish tank simulator. It is designed to be a fun and educational tool for anyone who
@@ -40,11 +55,3 @@ And this is the main feature of SmartFish, it will keep your PC awake.
 So now we can speak why I continue this project. Because when you are boring at work I want to allow you to play with my
 application.
 For the moment you can only play with a copy of the game "Place" but I will add more games in the future.
-
-### How to use SmartFish ?
-
-You can download the latest version of SmartFish [here](https://github.com/stheren/SmartFish/releases/latest)
-
-Download the JAR file
-
-And launch it !

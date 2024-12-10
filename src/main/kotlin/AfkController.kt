@@ -7,9 +7,9 @@ import javafx.scene.control.TextField
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import views.Clock
 import views.Console
-import views.Home
-import views.SmartPlace
+import views.Info
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -32,9 +32,11 @@ class AfkController {
 
     lateinit var content: VBox
 
-    lateinit var SideHome: SideMenuButton
-    lateinit var SideConsole: SideMenuButton
-    lateinit var SidePlace: SideMenuButton
+    lateinit var SideInfo: SideMenuButton
+//    lateinit var SideConsole: SideMenuButton
+//    lateinit var SidePlace: SideMenuButton
+
+    lateinit var SideHour: SideMenuButton
 
     var isOpen = true
 
@@ -44,7 +46,7 @@ class AfkController {
     fun initialize() {
 
         instance = this
-        content.children.add(Home.instance)
+        content.children.add(Clock.instance)
 
         btnClose.onAction = EventHandler { Platform.exit() }
         btnClose.onMouseEntered = EventHandler {
@@ -100,31 +102,43 @@ class AfkController {
             WindowsAfk.pStage.y = event.screenY + yOffset
         }
 
-        SidePlace.setOnAction {
+//        SidePlace.setOnAction {
+//            Platform.runLater {
+//                content.children.clear()
+//                content.children.add(SmartPlace.instance)
+//            }
+//        }
+
+
+        SideHour.setOnAction {
             Platform.runLater {
                 content.children.clear()
-                content.children.add(SmartPlace.instance)
+                content.children.add(Clock.instance)
             }
         }
 
-        SideHome.setOnAction {
+        SideInfo.setOnAction {
             Platform.runLater {
                 content.children.clear()
-                content.children.add(Home.instance)
+                content.children.add(Info.instance)
             }
         }
 
-        SideConsole.setOnAction {
-            Platform.runLater {
-                content.children.clear()
-                content.children.add(Console.instance)
-            }
-        }
+//        SideConsole.setOnAction {
+//            Platform.runLater {
+//                content.children.clear()
+//                content.children.add(Console.instance)
+//            }
+//        }
 
         root.onMouseClicked = EventHandler {
-            if (keyBoarding == null) {
+            if (keyBoarding == null && WindowsAfk.stayAwake) {
                 keyBoarding = KeyBoarding(this)
             }
+        }
+
+        Platform.runLater {
+            makeStyleOfBtnOnTop(false)
         }
     }
 

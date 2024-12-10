@@ -1,6 +1,7 @@
-import Place.Connexion
+
 import javafx.application.Application
 import javafx.application.HostServices
+import javafx.application.Platform
 import javafx.fxml.FXMLLoader
 import javafx.scene.Scene
 import javafx.scene.image.Image
@@ -12,13 +13,16 @@ import javafx.stage.StageStyle
 class WindowsAfk : Application() {
     companion object {
         lateinit var pStage: Stage
-        lateinit var hostServices: HostServices
-        var address : String? = null
+        var alwaysOnTop: Boolean = false
+        var stayAwake: Boolean = true
 
         @JvmStatic
         fun main(args: Array<String>) {
-            if (args.isNotEmpty()) {
-                address = args[0]
+            for (i in args.indices) {
+                when (args[i]) {
+                    "--alwaysOnTop" -> alwaysOnTop = true
+                    "--dont-stay-awake" -> stayAwake = false
+                }
             }
             launch(WindowsAfk::class.java)
         }
@@ -31,9 +35,9 @@ class WindowsAfk : Application() {
         val root = fxmlLoader.load<Any>() as BorderPane
 
         stage.initStyle(StageStyle.UNDECORATED)
-        stage.isAlwaysOnTop = false
+        stage.isAlwaysOnTop = alwaysOnTop
 
-        val scene = Scene(root, 510.0, 550.0)
+        val scene = Scene(root, 300.0, 150.0)
         scene.fill = Color.TRANSPARENT
         stage.scene = scene
 
@@ -43,13 +47,10 @@ class WindowsAfk : Application() {
         stage.title = "Smart Keyboard"
         stage.show()
 
-
-        WindowsAfk.hostServices = this.hostServices
         pStage = stage
     }
 
     override fun stop() {
-        Connexion.instance.close()
         controller.keyBoarding?.stop()
         controller.isOpen = false
         super.stop()

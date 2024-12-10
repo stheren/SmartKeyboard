@@ -32,16 +32,16 @@ class SideMenuButton : Group() {
                 style = BACKGROUND_COLOR_SET + if (active) "2d2f30" else "3c3f41"
                 rotate = -90.0
                 alignment = Pos.CENTER
-                spacing = 5.0
-                padding = Insets(0.0, 20.0, 0.0, 20.0)
+                spacing = 0.0
+                padding = Insets(0.0, 10.0, 0.0, 10.0)
                 children.add(ImageView().apply {
-                    fitWidth = 20.0
+                    fitWidth = 15.0
                     isPreserveRatio = true
                     image = Image(icon)
                 })
                 children.add(Label().apply {
                     textFill = Color.web("#afb1b3")
-                    text = this@SideMenuButton.texte
+//                    text = this@SideMenuButton.texte
                 })
             })
         }
