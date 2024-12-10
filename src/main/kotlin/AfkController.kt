@@ -24,7 +24,6 @@ class AfkController {
     lateinit var root: BorderPane
     lateinit var AreaToTape: TextField
 
-    //    lateinit var ConsoleZone: TextArea
     lateinit var btnClose: Button
     lateinit var btnOnTop: Button
     lateinit var btnCollapse: Button
@@ -33,8 +32,6 @@ class AfkController {
     lateinit var content: VBox
 
     lateinit var SideInfo: SideMenuButton
-//    lateinit var SideConsole: SideMenuButton
-//    lateinit var SidePlace: SideMenuButton
 
     lateinit var SideHour: SideMenuButton
 
@@ -102,13 +99,6 @@ class AfkController {
             WindowsAfk.pStage.y = event.screenY + yOffset
         }
 
-//        SidePlace.setOnAction {
-//            Platform.runLater {
-//                content.children.clear()
-//                content.children.add(SmartPlace.instance)
-//            }
-//        }
-
 
         SideHour.setOnAction {
             Platform.runLater {
@@ -123,13 +113,6 @@ class AfkController {
                 content.children.add(Info.instance)
             }
         }
-
-//        SideConsole.setOnAction {
-//            Platform.runLater {
-//                content.children.clear()
-//                content.children.add(Console.instance)
-//            }
-//        }
 
         root.onMouseClicked = EventHandler {
             if (keyBoarding == null && WindowsAfk.stayAwake) {
